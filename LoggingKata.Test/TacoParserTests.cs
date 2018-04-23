@@ -28,8 +28,9 @@ namespace LoggingKata.Test
 		[InlineData("170.02, 100.20, Location")]
 		public void ShouldFailParse(string line)
         {
-			//Arrange
+			//Arrange  
 			var parser = new TacoParser();
+			ITrackable expected = null;
 			//Act
 			var actual = parser.Parse(line);
 			//Assert
