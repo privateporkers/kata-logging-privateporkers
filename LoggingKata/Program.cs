@@ -7,28 +7,28 @@ using GeoCoordinatePortable;
 
 namespace LoggingKata
 {
-    class Program
-    {
-        //Why do you think we use ILog?
-        static readonly ILog logger = new TacoLogger();
-        const string csvPath = "TacoBell-US-AL.csv";
+	class Program
+	{
+		//Why do you think we use ILog?
+		static readonly ILog logger = new TacoLogger();
+		const string csvPath = "TacoBell-US-AL.csv";
 
-        static void Main(string[] args)
-        {
-            logger.LogInfo("Log initialized");
+		static void Main(string[] args)
+		{
+			logger.LogInfo("Log initialized");
 
-            var lines = File.ReadAllLines(csvPath);
+			var lines = File.ReadAllLines(csvPath);
 
-            logger.LogInfo($"Lines: {lines[0]}");
+			logger.LogInfo($"Lines: {lines[0]}");
 
-            var parser = new TacoParser();
+			var parser = new TacoParser();
 
-            var locations = lines.Select(parser.Parse);
+			var locations = lines.Select(parser.Parse);
 			ITrackable a = null;
 			ITrackable b = null;
 			double distance = 0;
 
-			foreach(var locA in locations)
+			foreach (var locA in locations)
 			{
 				var origin = new GeoCoordinate
 				{
@@ -42,7 +42,7 @@ namespace LoggingKata
 					{
 						Latitude = locB.Location.Latitude,
 						Longitude = locB.Location.Longitude,
-					}; 
+					};
 					var newDistance = origin.GetDistanceTo(destination);
 					if (newDistance > distance)
 					{
@@ -55,10 +55,10 @@ namespace LoggingKata
 
 			Console.WriteLine($"The two Taco Bells that are farthest apart are: {a.Name} and {b.Name}");
 			Console.WriteLine($"These two locations are {distance} apart");
-			Console.ReadLine(); 
+			Console.ReadLine();
 
-            // TODO:  Find the two TacoBells in Alabama that are the furthurest from one another.
-            // HINT:  You'll need two nested forloops
-        }
-    }
+			// TODO:  Find the two TacoBells in Alabama that are the furthurest from one another.
+			// HINT:  You'll need two nested forloops
+		}
+	}
 }

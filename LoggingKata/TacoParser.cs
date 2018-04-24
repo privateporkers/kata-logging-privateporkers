@@ -3,12 +3,12 @@
 
 namespace LoggingKata
 {
-    /// <summary>
-    /// Parses a POI file to locate all the TacoBells
-    /// </summary>
-    public class TacoParser
-    {
-        readonly ILog logger = new TacoLogger();
+	/// <summary>
+	/// Parses a POI file to locate all the TacoBells
+	/// </summary>
+	public class TacoParser
+	{
+		readonly ILog logger = new TacoLogger();
 
 		public ITrackable Parse(string line)
 		{
@@ -35,7 +35,7 @@ namespace LoggingKata
 				{
 					return null;
 				}
-				if(lon > Point.MaxLon || lon < -Point.MaxLon)
+				if (lon > Point.MaxLon || lon < -Point.MaxLon)
 				{
 					return null;
 				}
@@ -51,7 +51,7 @@ namespace LoggingKata
 				Location = new Point { Longitude = lon, Latitude = lat },
 				Name = name
 			};
-            //DO not fail if one record parsing fails, return null
-        }
-    }
+			//DO not fail if one record parsing fails, return null
+		}
+	}
 }
